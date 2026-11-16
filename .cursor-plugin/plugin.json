@@ -1,0 +1,21 @@
+{
+  "name": "agentia",
+  "version": "1.9.0",
+  "description": "Copado CICD, Robotic Testing, and AI skills for Cursor.",
+  "author": {
+    "name": "Copado Solutions",
+    "url": "https://www.copado.com"
+  },
+  "homepage": "https://developer.copado.com/docs",
+  "license": "MIT",
+  "repository": "https://github.com/CopadoSolutions/agentia-cursor-plugin",
+  "logo": "assets/agentia.svg",
+  "keywords": [
+    "copado",
+    "agentia",
+    "cicd",
+    "salesforce",
+    "testing",
+    "robotic testing"
+  ]
+}
