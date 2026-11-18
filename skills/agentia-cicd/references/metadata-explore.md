@@ -33,7 +33,8 @@ Credential auth and `--session-id` + `--endpoint` are mutually exclusive.
 ```sh
 agentia cicd project default set --credential <credential-id>
 agentia cicd environment list --type Sandbox --json
-agentia cicd credential list --environmentid <environment-id> --json
+agentia cicd credential list --name <credential-name> --json
+agentia cicd environment get <environment-id> --json
 ```
 
 ## Shell Quoting
@@ -141,6 +142,7 @@ agentia cicd metadata explore --action run_apex_tests --apex-unit-tests MyClassT
 | --- | --- |
 | Org Metadata API explore (read-oriented) | `cicd metadata explore` |
 | Copado metadata index search | `cicd metadata list` |
+| Org/branch metadata index compare | `cicd metadata index compare` (MCP `agentia_metadata_index_compare`) |
 | Indexed/Git content blobs | `cicd metadata content get` |
 | Org/Git content diff | `cicd metadata content compare` (each side: `--*-org-id` or `--*-credential-id`; credential resolves org and both are sent; credential optional — gateway default when omitted. Missing on one side → `present: false`, `identical: false`) |
 | Copado dependency graph (local DX `--path`, story/defaults context) | `cicd metadata dependency list` — [metadata-dependency.md](metadata-dependency.md) |

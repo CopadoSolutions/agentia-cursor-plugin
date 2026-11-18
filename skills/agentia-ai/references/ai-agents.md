@@ -15,6 +15,20 @@ agentia auth get --ai --json
 
 Operational options include `--workspace` and `--timeout`; authentication is resolved from `agentia auth set`, supported `AGENTIA_AI_*` environment variables, or the configured profile. Do not print PAT values.
 
+## Work Item And Credential Context
+
+| Flag | Use For |
+| --- | --- |
+| `--work-item` | Adds a `- Work item: <value>` line to the prompt context. |
+| `--user-story` | Adds a `- User story: <value>` line to the prompt context. |
+| `--credential-id` | Override the project default Copado credential for workspace synchronization. |
+| `--force-credential-sync` | Replace the cached CICD workspace integration before the ask. |
+| `--no-credential-sync` | Skip CICD workspace credential synchronization for this ask. |
+
+`--work-item` and `--user-story` are independent; the value is passed to the agent as plain text. Agentia does not look the record up in Copado and does not default to the active story from `work set`, so pass the ID or name explicitly.
+
+MCP `agentia_ai_ask` accepts `workItem`, `userStory`, `credentialId`, `forceCredentialSync`, and `noCredentialSync`.
+
 ## Agent Selectors
 
 | Selector | Use For |

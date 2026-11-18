@@ -28,7 +28,7 @@ agentia cicd job list --status "In Progress" --json
 agentia cicd job get <job-execution-id> --json
 agentia cicd job log get <job-execution-id> --step <step-id> --json
 agentia cicd job result-file list <result-id> --json
-agentia cicd job result-file get <result-id> --file-id <content-version-id> --output-file ./artifact.zip
+agentia cicd job result-file get <result-id> --file-id <file-id> --output-file ./artifact.zip
 agentia cicd job resume <job-execution-id> --json
 ```
 

@@ -12,6 +12,7 @@ Use this skill when working with Copado Pipelines Advanced through the Agentia C
 ## Commands
 
 - Configure global authentication with `agentia auth set --adv <PAT>`, or add `--local` for current-project/current-user scope. Both store the PAT in the keychain and auto-discover the Pipelines Advanced endpoint unless `--adv-base-url` is supplied.
+- Use `agentia adv auth status --json` to verify the stored PAT and resolved ADV endpoint before deployment commands.
 - Use `agentia adv organization list|get|validate` to inspect accessible organizations and verify connectivity.
 - Use `agentia adv deployment list|get|create|options|validate|deploy|quick-deploy|cancel` to define deployments, update options, and run or stop deployments.
 - Use `agentia adv component types|list|refresh|selected|add|remove` to discover metadata types and manage selected deployment components.

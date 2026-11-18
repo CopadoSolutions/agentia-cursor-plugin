@@ -24,6 +24,7 @@ Prefer `cloud promote` when the user talks about a story. Prefer `promotion run`
 | `promotion run ID` | Preflight and submit a run | Requires `--operation merge` or `--operation merge_and_deploy` unless `--resume` is used. |
 | `promotion open ID` | Open in browser | CLI-only navigation helper. |
 | `cloud promote [ID]` | Story-centric run | Use `--deploy` for merge and deploy; use `--promotion-id` if the story has multiple promotions (explicit ID is used as is and never creates one). JSON/MCP return `createdPromotion` when auto-created. |
+| `promotion job-step update ID` | Update a manual task step | Requires `-p` / `--promotion`. Set `--status`, assignee, or task text. MCP: `agentia_promotion_job_step_update`. |
 
 ## Status Reports
 
@@ -42,6 +43,15 @@ agentia cicd promotion list --work-id <story-id> --json
 agentia cicd promotion status <promotion-id> --json
 agentia cicd promotion run <promotion-id> --operation merge_and_deploy --json
 agentia cicd cloud promote <story-id> --deploy --json
+```
+
+## Ignored Metadata
+
+`promotion run` (`--ignored-metadata-json`), `cloud promote` (`--ignored-metadata-json`), and MCP `ignoredMetadata` take included-metadata rows. Read them from `includedMetadata` in `promotion get <promotion-id> --json` and pass the rows to ignore, each with `id` and `metadataApiName` or `name`. The list replaces the ignored metadata stored on the promotion and is saved before the run starts, so send the complete list you want.
+
+```sh
+agentia cicd promotion get <promotion-id> --json
+agentia cicd promotion run <promotion-id> --operation merge --ignored-metadata-json '[{"id":"<row-id>","metadataApiName":"<api-name>","type":"<type>"}]'
 ```
 
 ## Resume And Wait

@@ -11,7 +11,7 @@ agentia auth set --crt <pak> --crt-domain <domain> --crt-org <organization-id>
 agentia auth get --crt --json
 ```
 
-Proceed only when the CRT credential entry reports `ready: true`. CRT commands resolve the configured CRT keychain context or supported `AGENTIA_TESTING_*` process overrides. Do not pass PAKs in URLs or report them in output. CICD environment credentials are not a substitute for CRT credentials.
+Proceed only when the CRT credential entry reports `ready: true`. CRT commands resolve the configured CRT keychain context or supported `AGENTIA_TESTING_*` process overrides. Do not pass PAKs in URLs or report them in output. CICD credentials are not a substitute for CRT credentials.
 
 Use explicit `--project` and `--job` context. Agentia does not reproduce the legacy CLI's hidden active project/job selection.
 
@@ -26,7 +26,7 @@ Use explicit `--project` and `--job` context. Agentia does not reproduce the leg
 
 ```sh
 agentia testing project list --json
-agentia testing robot list --json
+agentia testing robot list --project <project-id> --json
 agentia testing job create --project <project-id> --robot <robot-id> --name "Smoke" --file tests/smoke.robot --json
 agentia testing job run <job-id> --project <project-id> --json
 agentia testing job runs get <build-id> --project <project-id> --job <job-id> --json

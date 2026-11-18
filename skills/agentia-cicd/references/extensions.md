@@ -1,4 +1,3 @@
-
 <!-- Agentia managed skill file: agentia setup skills -->
 
 # Copado CICD Extensions
@@ -42,6 +41,7 @@ Rules:
 
 - Install and uninstall need `--yes` (or a prompt) except `--dry-run`.
 - `force-app` needs `--sf-alias` or `--exclude-sf-deploy`.
+- `.` on a git repo installs its latest `v*` tag, not the working tree; use `--ref <branch>` to test local commits.
 - Symlinks and paths outside the extension root are rejected.
 - Uninstall deletes listed Functions/Templates only (404 = already gone); it does not undeploy `force-app`.
 
