@@ -29,7 +29,7 @@ Use this skill when working with Copado Pipelines Advanced through the Agentia C
 - Prefer `--json` for automation and agents.
 - For component JSON files, use `--json-file`; `--json` remains the standard Agentia output flag.
 - In JSON or non-interactive CLI runs, deploy, quick deploy, cancel, rollback, deployment-task removal, share removal, work-item back, and production/final work-item deploys require `--yes`. The matching MCP deployment mutations require `confirm: true`; validation does not.
-- Work-item deploy resolves the full `--to` path before mutation. Unknown stages fail before deploy, Git targets are refused, and production/final paths require explicit target and confirmation.
+- Work-item deploy resolves the full `--to` path before mutation. Closed or no-target work items error before deploy. Unknown stages fail before deploy (exit 2). Git targets are refused, and production/final paths require explicit target and confirmation.
 - New ADV v0.2 pipeline, work-item, code-analysis, deployment-task, and rollback operations are CLI-only in this delivery; MCP remains at the existing 21 ADV tools.
 - Treat a nonzero exit from a waited run as failure. JSON errors retain the command transaction ID and failed waited runs include `error.result.job`.
 

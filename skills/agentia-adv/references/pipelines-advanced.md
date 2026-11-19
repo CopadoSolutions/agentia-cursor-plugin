@@ -40,7 +40,7 @@ agentia adv deployment-task list <work-item-id> --json
 agentia adv work-item deploy <work-item-id> --to QA --validate --yes --json
 ```
 
-Pipeline create/update supports `--stage "Name=<org-id>"`, `--reviewers "Name=<user-id>,..."`, `--min-approvals "Name=1"`, and `--allowed-users "<user-id>,..."`. User references are numeric ADV user IDs; the CLI does not discover names for pipeline reviewer fields.
+Pipeline create/update supports `--stage "Name=<org-id>"`, `--reviewers "Name=<user-id>,..."`, `--min-approvals "Name=1"`, and `--allowed-users "<user-id>,..."`. User references are numeric ADV user IDs; the CLI does not discover names for pipeline reviewer fields. `pipeline update` can apply `--reviewers` or `--min-approvals` without `--stage` by loading stored stages from `pipeline get`. `pipeline list --json` omits the `active` field.
 
 ## Notes
 
@@ -52,7 +52,7 @@ Pipeline create/update supports `--stage "Name=<org-id>"`, `--reviewers "Name=<u
 - `validate`, `deploy`, `quick-deploy`, and `cancel` are asynchronous; use `--wait` or `agentia adv job wait`. A timeout stops only the CLI wait; the run continues and the JSON error includes the last observed job.
 - `deploy`, `quick-deploy`, and `cancel` prompt interactively. JSON and non-interactive runs require `--yes`; matching MCP tools require `confirm: true`.
 - `deployment rollback`, `deployment-task remove`, `work-item back`, `work-item share remove`, and production/final `work-item deploy` paths also require confirmation in JSON or non-interactive use.
-- `work-item deploy --to <stage>` resolves the full path before mutation. Unknown stages fail before deploy, Git target stages are refused, and production/final paths require explicit target plus confirmation.
+- `work-item deploy --to <stage>` resolves the full path before mutation. Closed work items and work items with no next stage error before deploy (exit 1). Unknown `--to` stages fail before deploy (exit 2). Git target stages are refused, and production/final paths require explicit target plus confirmation. In `--json` mode, read `error.oclif.exit` for the intended exit code; the process exit code can still be 1 for some usage errors.
 - Static code analysis jobs with a null provider outcome are treated as successful for the server PMD quirk; explicit Failed or Canceled outcomes remain failures.
 - `deployment-task add` accepts exactly one of `--email` or `--webhook`; webhook URLs must use HTTPS and cannot include user info. `deployment-task remove` needs a task key from `deployment-task list`.
 - `deployment rollback-preview <history-id> [--limit 0]` is read-only. `deployment rollback <history-id>` creates a rollback deployment and `--deploy` starts it.
