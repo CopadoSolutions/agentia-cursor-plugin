@@ -1,6 +1,6 @@
 ---
 name: agentia-cicd
-description: Use this skill when managing Copado CICD work with the Agentia CLI or Agentia MCP tools, including user stories (including current/active story context), cloud commit/promote, work publish/submit/done, promotion runs and conflicts, job executions, Copado Functions, Job Templates, git-hosted CICD extensions, projects, repositories, environments, credentials, pipelines, stages, Slack pipeline notification subscriptions, release data templates, Org Intelligence metadata explore, Copado metadata index/list/type/user/bundle/refresh, metadata index compare, and metadata dependency list (including local DX --path). Use it whenever the user asks an agent to operate Copado CICD from a terminal, IDE, or headless workflow.
+description: Use this skill when managing Copado CICD work with the Agentia CLI or Agentia MCP tools, including user stories (including current/active story context), cloud commit/promote, work publish (including --resync)/submit/done, promotion runs and conflicts, job executions, Copado Functions, Job Templates, git-hosted CICD extensions, projects, repositories, environments, credentials, pipelines, stages, Slack pipeline notification subscriptions, release data templates, Org Intelligence metadata explore, Copado metadata index/list/type/user/bundle/refresh, metadata index compare, and metadata dependency list (including local DX --path). Use it whenever the user asks an agent to operate Copado CICD from a terminal, IDE, or headless workflow.
 ---
 
 <!-- Agentia managed skill file: agentia setup skills -->
