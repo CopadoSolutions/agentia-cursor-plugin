@@ -6,7 +6,7 @@ Use `agentia testing browser` (and the matching `agentia_testing_browser_*` MCP 
 
 ## Mental Model
 
-- **One active session at a time**, stored in `.agentia/config.user.json` under `testingBrowserSession`. Always pass `--project <project-id>` (and optional `<job-id>` / `--session-id` guards).
+- **One active session at a time**, stored in `.copado/agentia/config.user.json` under `testingBrowserSession`. Always pass `--project <project-id>` (and optional `<job-id>` / `--session-id` guards).
 - **In-memory Session Cookies**: Agentia exchanges your CRT PAK for `FL`, `XSRF-TOKEN`, and `sessionsToken` cookies via `/user/access-keys/tokens?toSign=all`. Cookies stay in memory (cached with a 60s expiry buffer in long-lived processes like MCP and `recorder`) and are never written to disk.
 - **Browser Viewer**: Always pass `--no-open` to `testing browser view` by default (`agentia testing browser view --project <project-id> --no-open --json`) to print/return the interactive CRT browser session URL `https://<domain>/browser/session/<sessionId>?projectId=<projectId>&orgId=<orgId>` without launching a local browser window. Omit `--no-open` only when the user explicitly asks to open the browser. `testing browser stop` cleans up the session automatically.
 - **Replayable Keyword History**: Every `testing browser execute` and `testing browser recorder` event appends to `~/.agentia/testing-live/<projectId>/<jobId>.jsonl` with full Robot Framework keyword lines (`TypeSecret` values and auth tokens redacted). Closing a session does not clear history.

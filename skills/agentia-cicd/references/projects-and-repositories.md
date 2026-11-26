@@ -6,6 +6,8 @@ Use this reference for `agentia cicd project ...`, `agentia cicd project default
 
 Project defaults shorten later commands: environment, credential, pipeline, and project Id resolve from `project default get` when flags are omitted.
 
+Local project defaults and active work context persist under `.copado/agentia/` (`config.json` / `config.user.json`). Agentia treats `.copado/agentia/` as the project-root marker. A leftover `.agentia/` directory is moved into `.copado/agentia/` on the first `cicd` command (or MCP start) when safe; until then `.agentia/` remains readable and still counts as a marker.
+
 ## Project Commands
 
 | Command | Use For | Notes |

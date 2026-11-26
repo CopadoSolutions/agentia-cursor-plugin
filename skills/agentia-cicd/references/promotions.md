@@ -21,6 +21,8 @@ Prefer `cloud promote` when the user talks about a story. Prefer `promotion run`
 | `promotion list` | Find promotions | Filter by `--work-id`, status, project, pipeline, source/destination environment, or back-promotion flags. |
 | `promotion status ID` | Actionable run status | Prefer when the user asks "promotion status", what is running, or what is blocking. Includes user stories, current job step, queue, and Manual Task action-needed. MCP: `agentia_promotion_status`. |
 | `promotion get ID` | Inspect one promotion record | Read this before running, resuming, or resolving conflicts. Does not load job steps; use `promotion status` for blockers. |
+| `promotion metadata query` | Promoted metadata inventory / provenance / override risk | CICD Gateway promoted-metadata dataset. Prefer over SOQL. MCP: `agentia_promotion_metadata`. Details: [promotion-metadata.md](promotion-metadata.md). |
+| `promotion metadata schema` | Dataset fields/filters | Call before inventing filter names. MCP: `agentia_promotion_metadata_schema`. |
 | `promotion run ID` | Preflight and submit a run | Requires `--operation merge` or `--operation merge_and_deploy` unless `--resume` is used. |
 | `promotion open ID` | Open in browser | CLI-only navigation helper. |
 | `cloud promote [ID]` | Story-centric run | Use `--deploy` for merge and deploy; use `--promotion-id` if the story has multiple promotions (explicit ID is used as is and never creates one). JSON/MCP return `createdPromotion` when auto-created. |
@@ -64,11 +66,13 @@ Use `--resume <job-execution-id>` to resume the original execution after conflic
 
 | Command | Use For |
 | --- | --- |
-| `promotion conflict list -p <promotion-id>` | List merge conflicts for a promotion. |
+| `promotion conflict list -p <promotion-id>` | List merge conflicts for a promotion. Each item has an `attachmentId`, used as `<conflict-id>` below. |
 | `promotion conflict get <conflict-id> -p <promotion-id>` | Fetch raw conflict content; use `--output` to write a file. |
 | `promotion conflict resolve <conflict-id> -p <promotion-id> --mode auto` | Let Copado apply automatic resolution. |
 | `promotion conflict resolve <conflict-id> -p <promotion-id> --mode manual --file <path>` | Submit reviewed manual content. |
 | `promotion conflict unresolve <conflict-id> -p <promotion-id>` | Undo a prior resolution. |
+
+Take `<conflict-id>` from the `attachmentId` returned by `conflict list`.
 
 Read conflict content before manual resolution. Do not invent resolved content; use the user's reviewed file or ask for confirmation.
 

@@ -56,7 +56,8 @@ agentia testing job runs logs <build-id> --project <project-id> --job <job-id> -
 - `--timeout` bounds waiting; `--no-exit-code` keeps a failed remote run from failing the local command when explicitly desired.
 - `--save-artifacts` and `--xunit` write only to validated explicit paths. They require waiting, so they reject `--no-wait`.
 - Run log output is printed live while the run executes. Pass `--no-stream-logs` for a progress spinner instead. `--json` never streams, so machine-readable output stays clean.
-- Repeated `--datatable TABLE_ID:SELECTION` starts data-driven batch execution. It never waits and cannot be combined with stream, artifact-save, or xUnit modes.
+- Repeated `--datatable TABLE_ID:SELECTION` starts data-driven batch execution. It never waits and cannot be combined with stream, artifact-save, or xUnit modes. To watch one build of the batch, use `job runs logs <build-id> --follow`.
+- `job runs logs --follow` (`-f`) streams new log output until the build reaches a terminal status, bounded by `--timeout` minutes (default 60). `--tail-lines` limits only the first output. It rejects `--since-seconds`, `--limit-bytes`, and `--output`. Queue progress goes to stderr, so stdout holds only log output. With `--json` it waits and returns the full log and final `status`. The exit code is 0 for every run result, including failed and aborted runs; read `status`, or use `job run` when a failing exit code is needed. Timeouts and request errors still exit non-zero. MCP has no follow mode.
 - Use `job runs get`, `job runs list`, and `job runs search` instead of assuming list order.
 
 ## Schedules And Data Tables
